@@ -1097,29 +1097,38 @@
         });
 
         // --- 6. FORM HANDLING - Direct Email Opening ---
-        const form = document.getElementById('contactForm');
+const form = document.getElementById('contactForm');
 
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            // Create email subject and body
-            const subject = `Portfolio Message from ${name}`;
-            const body = `Hello Ali,%0D%0A%0D%0AName: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}%0D%0A%0D%0ABest regards,%0D%0A${name}`;
-            
-            // Create mailto link
-            const mailtoLink = `mailto:a.shararah@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            
-            // Open email client immediately
-            window.location.href = mailtoLink;
-            
-            // Reset form
-            form.reset();
-        });
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Get form values
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    
+    // Create better formatted email
+    const subject = `Portfolio Message from ${name}`;
+    const emailBody = `Hello Ali,
+
+Name: ${name}
+Email: ${email}
+
+Message:
+${message}
+
+Best regards,
+${name}`;
+    
+    // Create mailto link (encodeURIComponent will handle the encoding)
+    const mailtoLink = `mailto:a.shararah@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+    
+    // Open email client immediately
+    window.location.href = mailtoLink;
+    
+    // Reset form
+    form.reset();
+});
 
         // --- 7. SMOOTH SCROLL FOR MOBILE NAV ---
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1145,4 +1154,5 @@
     </script>
 </body>
 </html>
+
 
